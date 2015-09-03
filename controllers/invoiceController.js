@@ -1,7 +1,7 @@
 module.export = {
   post: function(req, res) {
     
-    res.send("hello world");
+    res.send("hello world")
 
   }
 };
