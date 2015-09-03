@@ -1,7 +1,7 @@
 /* global sails */
 var Pusher = require('pusher-client');
 var redis = sails.config.redis;
-var log = require("./config/logger");
+var log = require("../config/logger");
 
 // connect to Bitstamp's pusher
 var pusherBitstamp = new Pusher('de504dc5763aeef9ff52');
