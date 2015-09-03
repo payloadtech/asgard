@@ -16,6 +16,15 @@ mailer.sendMail({
    if (err) console.log(err);
    console.log(info);
 });
+
+Furthermore: the info object looks something like this:
+{ accepted: [ 'aminshahgilani@gmail.com' ],
+  rejected: [],
+  response: '250 Great success',
+  envelope:
+   { from: 'cupcake@letter.payload.pk',
+     to: [ 'aminshahgilani@gmail.com' ] },
+
 */
 
 var nodemailer = require('nodemailer');
