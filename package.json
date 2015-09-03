@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/payloadpk/asgard/issues"
   },
-  "homepage": "https://github.com/payloadpk/asgard#readme"
+  "homepage": "https://github.com/payloadpk/asgard#readme",
+  "dependencies": {
+    "pg": "^4.4.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.7.1",
+    "winston": "^1.0.1"
+  }
 }
