@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/payloadpk/asgard#readme",
   "dependencies": {
+    "body-parser": "^1.13.3",
     "coinbase": "^1.0.3",
     "express": "^4.13.3",
     "kue": "^0.9.4",
+    "morgan": "^1.6.1",
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
     "pusher-client": "^0.2.3",

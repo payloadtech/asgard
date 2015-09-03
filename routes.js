@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('./controllers/controllers');
+var invoiceController = require('./controllers/invoiceController');
 
 // redirect home page to API documentation
 router.get('/', function(req, res, next) {
@@ -8,6 +8,6 @@ router.get('/', function(req, res, next) {
 });
 
 // invoice
-router.post('/invoice', controllers.invoice.post);
+router.post('/invoice', invoiceController.post);
 
 module.exports = router;
