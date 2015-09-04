@@ -1,5 +1,5 @@
-module.export = {
-  post: function(req, res) {
-
+module.exports = {
+  post: function (req, res) {
+    res.send("hello world")
   }
 };
