@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var invoiceController = require('./controllers/invoiceController');
-var log = require("./lib/logger");
+var log = require("./config/logger");
 
 // redirect home page to API documentation
 router.get('/', function(req, res, next) {
