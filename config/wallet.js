@@ -11,4 +11,4 @@ var Account = require('coinbase').model.Account;
 var btcAccount = new Account(coinbase, {
   'id': process.env.COINBASE_API_WALLET
 });
-module.exports.coinbase = btcAccount;
+module.exports = btcAccount;
