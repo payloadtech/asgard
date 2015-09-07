@@ -2,7 +2,7 @@ var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 
-var routes = require('./routes');
+var routes = require('./routes.js');
 
 var app = express();
 
@@ -47,6 +47,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
