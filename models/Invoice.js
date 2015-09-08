@@ -107,3 +107,4 @@ var Invoice = sequelize.define('invoice', {
     }
 });
 
+module.exports = Invoice;
