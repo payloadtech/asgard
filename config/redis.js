@@ -10,5 +10,7 @@ var redisURL = url.parse(process.env.REDIS_URL);
 var client = redis.createClient(redisURL.port, redisURL.hostname);
 client.auth(redisURL.auth.split(":")[1]);
 
+console.log("I'm connected");
+
 // export connection
 module.exports = client;

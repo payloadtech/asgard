@@ -4,7 +4,7 @@
   "description": "The backend that powers the Payload app.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "debug": "^2.2.0",
     "express": "^4.13.3",
     "kue": "^0.9.4",
+    "mocha": "^2.3.1",
     "morgan": "^1.6.1",
     "nodemailer": "^1.4.0",
     "pg": "^4.4.1",
@@ -33,6 +34,7 @@
     "redis": "^0.12.1",
     "request": "^2.60.0",
     "sequelize": "^3.7.1",
+    "should": "^7.1.0",
     "winston": "^1.0.1",
     "ws": "^0.8.0"
   }
