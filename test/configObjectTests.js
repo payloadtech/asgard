@@ -43,17 +43,30 @@ describe('Configured Objects', function() {
       // requirements
       should.not.exist(err);
       info.response.should.equal('250 Great success');
+      done();
     });
   });
 
   // redis
-  it('Should set and get data', function(done){
+  it('Should set and get data', function(done) {
     var data = "This is unique data";
     redis.set("testData", data);
-    redis.get("testData", function(err, reply){
+    process.nextTick(redis.get("testData", function(err, reply) {
+      // requirements
       should.not.exist(err);
       reply.should.equal(data);
-    });
+      done();
+    }));
+  });
+
+  // market
+  if('Should push the current market rate into redis', function(done){
+    market.contRate();
+    process.nextTick(redis.get("rateUSD", function(err, rate) {
+      // requirement
+      should.exist(rate);
+      done();
+    }));
   });
 
 });
