@@ -5,6 +5,7 @@ var kue = require('kue');
 var WebSocket = require('ws');
 var ws = new WebSocket('wss://ws.chain.com/v2/notifications');
 var queue = kue.createQueue();
+var Invoice = require("../models/Invoice");
 
 module.exports = {
   post: function (req, res) {
@@ -60,7 +61,7 @@ module.exports = {
           "amount": amount,
           "btcAddress": btcAddress
         };
-        Invoice.create(invoice).exec(function (err, invoice) {
+        Invoice.create(invoice).then(function (err, invoice) {
           if (err) {
             // log the error
             log.error(err);
@@ -77,40 +78,13 @@ module.exports = {
             "invoiceId": invoice.id,
             "amount": invoice.amount,
             "address": btcAddress
-          }); 
-          // create a object for blockchain address subs   
-          var reqWs = {
-            type: "address",
-            address: btcAddress,
-            block_chain: "bitcoin"
-          };
-          // log BTC address
-          log.silly("BTC Address is : " + btcAddress);
-          // subscribe to block chain address notifications
-          ws.send(JSON.stringify(reqWs));
-          ws.on('message', function (ev) {
-            // log block chain notification
-            var x = (JSON.parse(ev));
-            if (x.payload.type === "address") {
-              if (x.payload.address === btcAddress) {
-                var hash = x.payload.transaction_hash;
-                // log transaction hash
-                log.silly("Transaction hash : " + x.payload.transaction_hash);
-                // create confirmation job in kue
-                var job = queue.create('confirmation', {
-                  transHash: hash,
-                  btcAddress: btcAddress
-                }).priority('high').save(function (err) {
-                  if (err) log.error("Kue job error : " + err);
-                  else log.silly("Job id : " + job.id)
-                });
-              }
-            } else {
-              {
-                // log heartbeat
-                log.silly(x.payload);
-              }
-            }
+          });
+          
+          var job = queue.create('transactionHash', {
+            btcAddress: btcAddress
+          }).priority('high').save(function (err) {
+            if (err) log.error("Kue job error : " + err);
+            else log.silly("Job id : " + job.id)
           });
         });
       }

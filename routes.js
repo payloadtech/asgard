@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 // invoice
-log.debug(typeof invoiceController.post);
 router.post('/invoice', invoiceController.post);
 
 module.exports = router;
