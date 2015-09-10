@@ -60,13 +60,25 @@ describe('Configured Objects', function() {
   });
 
   // market
-  if('Should push the current market rate into redis', function(done){
+  it('Should push the current market rate into redis', function(done) {
     market.contRate();
     process.nextTick(redis.get("rateUSD", function(err, rate) {
       // requirement
       should.exist(rate);
       done();
     }));
+  });
+
+  // wallet
+  it('Should create a new wallet', function(done) {
+    wallet.createAddress({
+      "callback_url": '',
+      "label": "testWallet"
+    }, function(err, address) {
+      shoud.not.exist(err);
+      should.exist(address);
+      done();
+    });
   });
 
 });
