@@ -34,3 +34,5 @@ npm-debug.log
 
 # Debug settings
 .settings
+.vscode/launch.json
+config/sequelize.json

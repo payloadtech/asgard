@@ -1,110 +1,109 @@
-var Sequelize = require('sequelize');
-var sequelize = new Sequelize('../config/sequelize');
-
-var Invoice = sequelize.define('invoice', {
-    price: {
-        type: Sequelize.FLOAT,
-        validate: {
-            notNull: true,
-            notEmpty: true
+"use strict";
+module.exports = function (sequelize, DataTypes) {
+    var Invoice = sequelize.define('Invoice', {
+        price: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        // currency of price
+        currency: {
+            type: DataTypes.STRING,
+            defaultValue: "PKR",
+            isIn: [["PKR", "USD", "BTC"]],
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        // units of currency per bitcoin
+        rate: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        // invoice amount in bitcoin
+        amount: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        btcAddress: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        transactionId: {
+            type: DataTypes.STRING,
+        },
+        // notification settings
+        notificationUrl: {
+            type: DataTypes.STRING,
+        },
+        // confirmations required for invoice to be marked as complete, default is 3
+        confirmationSpeed: {
+            type: DataTypes.INTEGER,
+            defaultValue: 3
+        },
+        confirmations: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+        },
+        redirectUrl: {
+            type: DataTypes.STRING,
+        },
+        // item description
+        itemDesc: {
+            type: DataTypes.STRING(100),
+        },
+        // others
+        physical: {
+            type: DataTypes.BOOLEAN,
+            defaultsTo: false
+        },
+        // buyer details
+        buyerName: {
+            type: DataTypes.STRING,
+        },
+        buyerAddress: {
+            type: DataTypes.STRING,
+        },
+        buyerLocality: {
+            type: DataTypes.STRING,
+        },
+        buyerRegion: {
+            type: DataTypes.STRING,
+        },
+        buyerPostelCode: {
+            type: DataTypes.STRING,
+        },
+        buyerCountry: {
+            type: DataTypes.STRING,
+        },
+        buyerEmail: {
+            type: DataTypes.STRING,
+            email: true
+        },
+        buyerPhone: {
+            type: DataTypes.INTEGER,
+        },
+        // status of invoice i.e confirmed
+        status: {
+            type: DataTypes.STRING,
+            defaultValue: "unpaid",
+        },
+        // exception for paidOver or paidPartial, or false
+        exception: {
+            type: DataTypes.BOOLEAN,
         }
-    },
-    // currency of price
-    currency: {
-        type: Sequelize.STRING,
-        defaultValue: "PKR",
-        isIn: [["PKR", "USD", "BTC"]],
-        validate: {
-            notNull: true,
-            notEmpty: true
-        }
-    },
-    // units of currency per bitcoin
-    rate: {
-        type: Sequelize.FLOAT,
-        validate: {
-            notNull: true,
-            notEmpty: true
-        }
-    },
-    // invoice amount in bitcoin
-    amount: {
-        type: Sequelize.FLOAT,
-        validate: {
-            notNull: true,
-            notEmpty: true
-        }
-    },
-    btcAddress: {
-        type: Sequelize.STRING,
-        validate: {
-            notNull: true,
-            notEmpty: true
-        }
-    },
-    transactionId: {
-        type: Sequelize.STRING,
-    },
-    // notification settings
-    notificationUrl: {
-        type: Sequelize.STRING,
-    },
-    // confirmations required for invoice to be marked as complete, default is 3
-    confirmationSpeed: {
-        type: Sequelize.INTEGER,
-        defaultValue: 3
-    },
-    confirmations: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0
-    },
-    redirectUrl: {
-        type: Sequelize.STRING,
-    },
-    // item description
-    itemDesc: {
-        type: Sequelize.STRING(100),
-    },
-    // others
-    physical: {
-        type: Sequelize.BOOLEAN,
-        defaultsTo: false
-    },
-    // buyer details
-    buyerName: {
-        type: Sequelize.STRING,
-    },
-    buyerAddress: {
-        type: Sequelize.STRING,
-    },
-    buyerLocality: {
-        type: Sequelize.STRING,
-    },
-    buyerRegion: {
-        type: Sequelize.STRING,
-    },
-    buyerPostelCode: {
-        type: Sequelize.STRING,
-    },
-    buyerCountry: {
-        type: Sequelize.STRING,
-    },
-    buyerEmail: {
-        type: Sequelize.STRING,
-        email: true
-    },
-    buyerPhone: {
-        type: Sequelize.INTEGER,
-    },
-    // status of invoice i.e confirmed
-    status: {
-        type: Sequelize.STRING,
-        defaultValue: "unpaid",
-    },
-    // exception for paidOver or paidPartial, or false
-    exception: {
-        type: Sequelize.BOOLEAN,
-    }
-});
-
-module.exports = Invoice;
+    });
+    return Invoice;
+};

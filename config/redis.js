@@ -3,7 +3,7 @@ var redis = require('redis');
 var url = require('url');
 
 // notify if REDIS_URL is unset
-if (!process.env.REDIS_URL) console.error('Please set the REDIS_URL variable');
+//if (!process.env.REDIS_URL) console.error('Please set the REDIS_URL variable');
 
 // connect to redis
 var redisURL = url.parse(process.env.REDIS_URL);

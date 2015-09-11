@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../app.js');
 var debug = require('debug')('asgard:server');
 var http = require('http');
+var models = require("../models"); 
 
 /**
  * Get port from environment and store in Express.
@@ -14,6 +15,7 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+
 
 /**
  * Create HTTP server.
@@ -25,6 +27,13 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+console.log("Listning on port " + port);
+
+// Sync models
+models.sequelize.sync().then(function () {
+    console.log('Express server listening on port ' + server.address().port);
+});
+
 
 /**
  * Normalize a port into a number, string, or false.
@@ -85,3 +94,8 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+
+
+
