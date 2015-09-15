@@ -34,3 +34,4 @@ npm-debug.log
 
 # Debug settings
 .settings
+.vscode/launch.json
