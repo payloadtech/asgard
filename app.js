@@ -1,3 +1,4 @@
+/* global process */
 var models = require("./models");
 var express = require('express');
 var logger = require('morgan');
@@ -61,33 +62,23 @@ app.use(function (err, req, res, next) {
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-
-
-
-/**
- * Create HTTP server.
- */
-//var server = http.createServer(app);
-/**
- * Listen on provided port, on all network interfaces.
- */
+var server;
 
 // Sync models
+
 models.sequelize.sync().then(function () {
-  //   server.listen(port);
   
-
-  var server = app.listen(app.get('port'), function () {
+   // Create HTTP server, Listen on provided port, on all network interfaces.
+    
+    server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
+    server.on('error', onError);
+    server.on('listening', onListening);
   });
-
-  server.on('error', onError);
-  server.on('listening', onListening);
-  console.log("Listning on port " + port);
 
 }).error(function (error) {
   console.log("ERROR IN CONN : " + error)
-  });
+});
 
 
 /**

@@ -64,19 +64,23 @@ module.exports = {
         };
         models.Invoice.create(invoice).then(function (invoice) {
           log.debug("Created invoice: " + invoice.id);
+          
           // respond with the amount
-          res.json({
-            "invoiceId": invoice.id,
-            "amount": invoice.amount,
-            "address": btcAddress
-          });
-
+          res.json(invoice);
+          
+          // create confirmation jobs
+          
           var job = queue.create('transactionHash', {
             btcAddress: btcAddress
           }).priority('high').save(function (err) {
-            if (err) log.error("Kue job error : " + err);
-            else log.silly("Job id : " + job.id)
+            if (err) {
+              log.error("Kue job error : " + err);
+            }
+            else {
+              log.debug("Job id : " + job.id);
+            }
           });
+
         }).catch(function (error) {
           console.log("ops: " + error);
           // reply with a 500 error
