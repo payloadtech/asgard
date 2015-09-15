@@ -3,9 +3,9 @@ var kue = require('kue');
 var WebSocket = require('ws');
 var ws = new WebSocket('wss://ws.chain.com/v2/notifications');
 var models = require("../models");
+var queue = require('./queue.js');
 
 module.exports.trans = function () {
-  var queue = kue.createQueue();
 
   queue.process('transactionHash', function (job, done) {
     
