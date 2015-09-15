@@ -1,12 +1,11 @@
 var wallet = require("../config/wallet");
 var redis = require("../config/redis");
 var log = require("../config/logger");
-var kue = require('kue');
 var WebSocket = require('ws');
 var ws = new WebSocket('wss://ws.chain.com/v2/notifications');
-var queue = kue.createQueue();
 var models = require("../models");
 var market = require('../config/market.js');
+var queue = require('../config/queue.js');
 
 module.exports = {
   post: function (req, res) {
