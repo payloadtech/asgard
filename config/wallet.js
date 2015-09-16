@@ -3,7 +3,7 @@ var Coinbase = require('coinbase').Client;
 var coinbaseParams = {
   'apiKey': process.env.COINBASE_API_KEY,
   'apiSecret': process.env.COINBASE_API_SECRET,
-  'baseApiUri': process.env.COINBASE_API_URL
+  'baseApiUri': process.env.COINBASE_API_URI
 };
 var coinbase = new Coinbase(coinbaseParams);
 

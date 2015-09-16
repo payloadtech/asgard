@@ -1,11 +1,11 @@
 var wallet = require("../config/wallet");
 var redis = require("../config/redis");
 var log = require("../config/logger");
-var kue = require('kue');
 var WebSocket = require('ws');
 var ws = new WebSocket('wss://ws.chain.com/v2/notifications');
-var queue = kue.createQueue();
-var Invoice = require("../models/Invoice");
+var models = require("../models");
+var market = require('../config/market.js');
+var queue = require('../config/queue.js');
 
 module.exports = {
   post: function (req, res) {
@@ -61,30 +61,32 @@ module.exports = {
           "amount": amount,
           "btcAddress": btcAddress
         };
-        Invoice.create(invoice).then(function (err, invoice) {
-          if (err) {
-            // log the error
-            log.error(err);
-            // reply with a 500 error
-            res.status(500);
-            return res.json({
-              success: false,
-              message: "Internal server error"
-            });
-          }
+        models.Invoice.create(invoice).then(function (invoice) {
           log.debug("Created invoice: " + invoice.id);
+          
           // respond with the amount
-          res.json({
-            "invoiceId": invoice.id,
-            "amount": invoice.amount,
-            "address": btcAddress
-          });
+          res.json(invoice);
+          
+          // create confirmation jobs
           
           var job = queue.create('transactionHash', {
             btcAddress: btcAddress
           }).priority('high').save(function (err) {
-            if (err) log.error("Kue job error : " + err);
-            else log.silly("Job id : " + job.id)
+            if (err) {
+              log.error("Kue job error : " + err);
+            }
+            else {
+              log.debug("Job id : " + job.id);
+            }
+          });
+
+        }).catch(function (error) {
+          console.log("ops: " + error);
+          // reply with a 500 error
+          res.status(500);
+          return res.json({
+            success: false,
+            message: "Internal server error"
           });
         });
       }
