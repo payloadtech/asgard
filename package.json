@@ -21,6 +21,7 @@
   "homepage": "https://github.com/payloadpk/asgard#readme",
   "dependencies": {
     "bcryptjs": "^2.2.2",
+    "bitcore": "^0.13.3",
     "body-parser": "^1.13.3",
     "coinbase": "^1.0.3",
     "debug": "^2.2.0",
