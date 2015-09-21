@@ -2,7 +2,6 @@ var redis = require('redis');
 var kue = require('kue');
 var url = require('url');
 
-
 var redisURL = url.parse(process.env.REDIS_URL);
 var q = kue.createQueue({
   redis: {
