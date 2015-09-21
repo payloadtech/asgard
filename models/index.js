@@ -5,14 +5,14 @@ var path = require("path");
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
 //var config = require('../config/sequelize.json')[env];
-var sequelize = new Sequelize(process.env.DATABASE_URL,{dialect:'postgres'});
+var sequelize = new Sequelize(process.env.DATABASE_URL, { dialect: 'postgres' });
 var db = {};
 
 sequelize
   .authenticate()
-  .then(function(err) {
+  .then(function (err) {
     console.log('Connection has been established successfully.');
-  }, function (err) { 
+  }, function (err) {
     console.log('Unable to connect to the database:', err);
   });
 
