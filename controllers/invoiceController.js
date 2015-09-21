@@ -67,8 +67,7 @@ module.exports = {
           // respond with the amount
           res.json(invoice);
           
-          // create confirmation jobs
-          
+          // create confirmation jobs         
           var job = queue.create('transactionHash', {
             btcAddress: btcAddress
           }).priority('high').save(function (err) {
@@ -91,5 +90,11 @@ module.exports = {
         });
       }
     });
+  },
+  get: function (req, res) {
+    models.Invoice.findAll().then(function (found) {
+        var result = JSON.parse(JSON.stringify(found));
+        res.json(result);
+});
   }
 };

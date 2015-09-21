@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/payloadpk/asgard#readme",
   "dependencies": {
+    "bcryptjs": "^2.2.2",
     "body-parser": "^1.13.3",
     "coinbase": "^1.0.3",
     "debug": "^2.2.0",
@@ -27,6 +28,7 @@
     "kue": "^0.9.4",
     "mocha": "^2.3.1",
     "morgan": "^1.6.1",
+    "mysql": "^2.9.0",
     "nodemailer": "^1.4.0",
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
