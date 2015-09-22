@@ -34,30 +34,10 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 notEmpty: true,
-                len: [4, 30]
+                len: [4, 200]
             }
         }
-    },
-        {
-            hooks: {
-                beforeCreate: function (user, options) {
-                    bcrypt.genSalt(user.password, function (err, salt) {
-                        bcrypt.hash("B4c0/\/", salt, function (err, hash) {
-                            // Store hashed password in DB.
-                            user.password = hash;
-                        });
-                    });
-                },
-                beforeUpdate: function (user, options) {
-                    bcrypt.genSalt(user.password, function (err, salt) {
-                        bcrypt.hash("B4c0/\/", salt, function (err, hash) {
-                            // Store hashed password in DB.
-                            user.password = hash;
-                        });
-                    });
-                }
-            }
-        }
+    }
         );
     return User;
 };
