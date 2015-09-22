@@ -12,7 +12,7 @@ walletNonce, which it will pass through to the argument.
 var bitcore = require('bitcore');
 
 
-var Wallet = function(iteration) {
+var wallet = function(iteration) {
   var publicKeyRing = [
     "xpub69FPCcRRKETsYfQrLZGUqPmiXErDh9km2LPjtLE8tJBcQFfKLJN8FXsptwW62Q61CZvDCj81wRXMj4EKmEMKym6sn8WG8GwcbjefV3n8GWq",
     "xpub67wfAJFVRFFRiNrdftanqxejaa7cqJV2TYefgwMWB37QDtoBt9pyE7jiWtJti2jjYUmUhPZ7aSxR9FKLgCLXJriSTNeegookB42XV2d1eTN",
@@ -31,4 +31,4 @@ var Wallet = function(iteration) {
 };
 
 
-module.exports = Wallet;
+module.exports = wallet;
