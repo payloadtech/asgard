@@ -54,13 +54,11 @@ module.exports = {
       });
       function createInvoice(newBtcAddress) {
         var btcAddress = newBtcAddress.address;
-        var invoice = {
-          "price": parseFloat(req.body.price),
-          "currency": req.body.currency,
-          "rate": rateCurrent,
-          "amount": amount,
-          "btcAddress": btcAddress
-        };
+        var invoice = req.body;
+        invoice.rate = rateCurrent;
+        invoice.amount = amount;
+        invoice.btcAddress = btcAddress;
+        
         models.Invoice.create(invoice).then(function (invoice) {
           log.debug("Created invoice: " + invoice.id);
           
@@ -93,8 +91,8 @@ module.exports = {
   },
   get: function (req, res) {
     models.Invoice.findAll().then(function (found) {
-        var result = JSON.parse(JSON.stringify(found));
-        res.json(result);
-});
+      var result = JSON.parse(JSON.stringify(found));
+      res.json(result);
+    });
   }
 };
