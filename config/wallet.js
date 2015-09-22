@@ -4,8 +4,9 @@
 
 /*
 The wallet hierarchically derives public addresses, and their corresponding
-P2SH wallet addresses. It requires a none in the redis client, called
+P2SH wallet addresses. It requires a nonce in the redis client, called
 walletNonce, which it will pass through to the argument.
+
 */
 
 var bitcore = require('bitcore');
