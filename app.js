@@ -8,8 +8,6 @@ var debug = require('debug')('asgard:server');
 var http = require('http');
 var pg = require('pg');
 
-
-
 var app = express();
 
 // configure morgan

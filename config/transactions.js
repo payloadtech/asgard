@@ -102,7 +102,9 @@ module.exports.trans = function () {
               }
             }
           }
-        });
+        }).catch(function (error) {
+					log.debug("Error : " + error);
+				});
       }
     });
   });
