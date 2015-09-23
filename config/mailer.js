@@ -27,12 +27,14 @@ Furthermore: the info object looks something like this:
 
 */
 
+var config = require('./config.js');
+
 var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'mailgun',
   auth: {
-    user: 'process.env.MG_USER',
-    pass: 'process.env.MG_PASS'
+    user: config.mailerUser,
+    pass: config.mailerPass
   }
 });
 

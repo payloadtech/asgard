@@ -9,7 +9,9 @@ var allTheSettings = {
   dbUrl: process.env.DATABASE_URL,
   dbUser: process.env.DATABASE_USER,
   redisUrl: process.env.REDIS_URL,
-  secret: process.env.SECRET
+  secret: process.env.SECRET,
+  mailerUser: process.env.MG_USER,
+  mailerPass: process.env.MG_PASS
 };
 
 module.exports = allTheSettings;
