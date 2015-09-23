@@ -40,7 +40,8 @@ module.exports = {
 					res.status(500);
 					return res.json({
 						success: false,
-						message: "Internal server error"
+						message: "Internal server error",
+						error: error.message
 					});
 				});
 			});
