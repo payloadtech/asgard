@@ -31,7 +31,7 @@ module.exports = {
 				user.password = hash;
 				console.log('USER PASSWORD AFTER : ' + user.password);
 				models.User.create(user).then(function (user) {
-					log.debug("Created user: " + user.id);         
+					log.debug("Created user: " + user.id);
 					// respond with the amount
 					res.json(user);
 				}).catch(function (error) {
@@ -54,5 +54,4 @@ module.exports = {
 			res.json(result);
 		});
 	}
-}
-	
+};
