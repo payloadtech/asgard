@@ -1,4 +1,3 @@
-"use strict";
 module.exports = function (sequelize, DataTypes) {
     var Invoice = sequelize.define('Invoice', {
         price: {
