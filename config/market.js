@@ -16,7 +16,7 @@ module.exports.contRate = function() {
     // Bitstamp's trading fees
     var netTradeMultiplier = 9975 / 10000; // deducts the .25% trade fee
     var netWithdrawalMultiplier = 97 / 100; // deducts the 30 withdrawal fee
-    var profitMultiplier = 98 / 100; // deducts the profit for Payload services
+    var profitPercentage = 2 / 100; // deducts the profit for Payload services
     var usd2pkr = 104.5;
 
 
@@ -34,8 +34,14 @@ module.exports.contRate = function() {
     // volume weighted price per bitcoin
     askWBTC = askValBTC / askVolBTC;
 
-    // net price per bitcoin
-    askNetPriceUSD = askWBTC * netTradeMultiplier * netWithdrawalMultiplier * profitMultiplier;
+    // net ask price per bitcoin in USD
+    askNetPriceUSD =
+      askWBTC *
+      netTradeMultiplier *
+      netWithdrawalMultiplier *
+      (1 - profitPercentage);
+
+    // net ask price per bitcoin in PKR  
     askNetPricePKR = usd2pkr * askNetPriceUSD;
 
     log.debug("ASK: cumulative volume of bitcoin", askVolBTC);
