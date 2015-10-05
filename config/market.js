@@ -20,32 +20,32 @@ module.exports.contRate = function() {
     var usd2pkr = 104.5;
 
 
-    var volBTC = 0; // the volume of bitcoins
-    var valBTC = 0; // the value of the bitcoins
-    var wBTC; // the weighted price per bitcoin
-    var netPriceUSD;
-    var netPricePKR;
+    var askVolBTC = 0; // the volume of bitcoins
+    var askValBTC = 0; // the value of the bitcoins
+    var askWBTC; // the weighted price per bitcoin
+    var askNetPriceUSD;
+    var askNetPricePKR;
 
     for (i = 0; i < data.asks.length; i++) {
-      volBTC += parseFloat(data.asks[i][1]);
-      valBTC += parseFloat(data.asks[i][0]) * parseFloat(data.asks[i][1]);
+      askVolBTC += parseFloat(data.asks[i][1]);
+      askValBTC += parseFloat(data.asks[i][0]) * parseFloat(data.asks[i][1]);
     }
 
     // volume weighted price per bitcoin
-    wBTC = valBTC / volBTC;
+    askWBTC = askValBTC / askVolBTC;
 
     // net price per bitcoin
-    netPriceUSD = wBTC * netTradeMultiplier * netWithdrawalMultiplier * profitMultiplier;
-    netPricePKR = usd2pkr * netPriceUSD;
+    askNetPriceUSD = askWBTC * netTradeMultiplier * netWithdrawalMultiplier * profitMultiplier;
+    askNetPricePKR = usd2pkr * askNetPriceUSD;
 
-    log.debug("cumulative volume of bitcoin", volBTC);
-    log.debug("value of bitcoin in USD", valBTC);
-    log.debug("value per bitcoin", wBTC);
-    log.debug("price per bitcoin USD", netPriceUSD);
-    log.debug("price per bitcoin PKR", netPricePKR);
+    log.debug("ASK: cumulative volume of bitcoin", askVolBTC);
+    log.debug("ASK: value of bitcoin in USD", askValBTC);
+    log.debug("ASK: value per bitcoin", askWBTC);
+    log.debug("ASK: price per bitcoin USD", askNetPriceUSD);
+    log.debug("ASK: price per bitcoin PKR", askNetPricePKR);
 
-    redis.set("rateUSD", netPriceUSD);
-    redis.set("ratePKR", netPricePKR);
+    redis.set("rateUSD", askNetPriceUSD);
+    redis.set("ratePKR", askNetPricePKR);
 
   });
 };
