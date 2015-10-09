@@ -8,10 +8,10 @@ var queue = require('./queue.js');
 module.exports.trans = function () {
 
   queue.process('transactionHash', function (job, done) {
-    
+
     // create a object for blockchain transaction subs
-    var btcAddress = job.data.btcAddress; 
-    // create a object for blockchain address subs   
+    var btcAddress = job.data.btcAddress;
+    // create a object for blockchain address subs
     var reqWs = {
       type: "address",
       address: btcAddress,
@@ -31,7 +31,7 @@ module.exports.trans = function () {
           log.debug("Transaction hash : " + x.payload.transaction_hash);
           // update in database
           models.Invoice.find({ where: { btcAddress: btcAddress } }).then(function (found) {
-            if (found) {           
+            if (found) {
               // update if found
               found.updateAttributes({ transactionId: hash });
               // create confirmation job in kue
@@ -77,7 +77,7 @@ module.exports.trans = function () {
         log.debug("Confirmation received : " + y.payload.transaction.confirmations);
         receivedConf = y.payload.transaction.confirmations;
         // find invoice previous and required confirmations
-        
+
         models.Invoice.find({ where: { btcAddress: btcAddress } }).then(function (found) {
           if (found) {
             // if the record exists in the db
@@ -91,13 +91,13 @@ module.exports.trans = function () {
             if (receivedConf > invoiceConf) {
 
               if (invoiceConf === requiredConf) {
-                // update invoice status      
+                // update invoice status
                 found.updateAttributes({ status: "paid", confirmations: receivedConf }).then(function () {
                   done();
                 });
               }
               else {
-                // update invoice confirmations                     
+                // update invoice confirmations
                 found.updateAttributes({ confirmations: receivedConf });
               }
             }
@@ -108,4 +108,4 @@ module.exports.trans = function () {
       }
     });
   });
-}
+};

@@ -2,11 +2,10 @@
 var redis = require('redis');
 var url = require('url');
 
-// notify if REDIS_URL is unset
-//if (!process.env.REDIS_URL) console.error('Please set the REDIS_URL variable');
+var config = require('./config.js');
 
 // connect to redis
-var redisURL = url.parse(process.env.REDIS_URL);
+var redisURL = url.parse(config.redisUrl);
 var client = redis.createClient(redisURL.port, redisURL.hostname);
 client.auth(redisURL.auth.split(":")[1]);
 
