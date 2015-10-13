@@ -38,7 +38,14 @@ var logger = new(winston.Logger)({
     debug: 'blue',
   },
   transports: [
-    new(winston.transports.Console)({
+    new (winston.transports.Console)({
+      colorize: true,
+      handleExceptions: true,
+      json: false,
+      level: "debug"
+    }),
+    new (winston.transports.File)({
+      filename: 'trace.log',
       colorize: true,
       handleExceptions: true,
       json: false,
