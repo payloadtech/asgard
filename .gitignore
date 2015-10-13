@@ -35,3 +35,6 @@ npm-debug.log
 # Debug settings
 .settings
 .vscode/launch.json
+
+# Config overrides
+config/configOverrides.js
