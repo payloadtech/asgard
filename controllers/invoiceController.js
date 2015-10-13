@@ -1,11 +1,11 @@
-var wallet = require("../config/wallet");
-var redis = require("../config/redis");
-var log = require("../config/logger");
+var wallet = require("../lib/wallet");
+var redis = require("../lib/redis");
+var log = require("../lib/logger");
 var WebSocket = require('ws');
 var ws = new WebSocket('wss://ws.chain.com/v2/notifications');
 var models = require("../models");
-var market = require('../config/market.js');
-var queue = require('../config/queue.js');
+var market = require('../lib/market.js');
+var queue = require('../lib/queue.js');
 
 module.exports = {
   post: function (req, res) {
@@ -58,14 +58,14 @@ module.exports = {
         invoice.rate = rateCurrent;
         invoice.amount = amount;
         invoice.btcAddress = btcAddress;
-        
+
         models.Invoice.create(invoice).then(function (invoice) {
           log.debug("Created invoice: " + invoice.id);
-          
+
           // respond with the amount
           res.json(invoice);
-          
-          // create confirmation jobs         
+
+          // create confirmation jobs
           var job = queue.create('transactionHash', {
             btcAddress: btcAddress
           }).priority('high').save(function (err) {

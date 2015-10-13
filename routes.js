@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var invoiceController = require('./controllers/invoiceController');
 var userController = require('./controllers/userController');
-var authenticate = require('./config/authenticate');
-var log = require("./config/logger");
+var authenticate = require('./lib/authenticate');
+var log = require("./lib/logger");
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 // authenticate
