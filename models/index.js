@@ -1,8 +1,9 @@
+var config = require('../config');
 var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
-var sequelize = new Sequelize(process.env.DATABASE_URL, {
+var sequelize = new Sequelize(config.dbUrl, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: true
