@@ -2,8 +2,12 @@ var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
-//var config = require('../config/sequelize.json')[env];
-var sequelize = new Sequelize(process.env.DATABASE_URL, { dialect: 'postgres' });
+var sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: true
+  }
+});
 var db = {};
 
 sequelize
