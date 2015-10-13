@@ -1,3 +1,5 @@
+var log = require('../lib/logger');
+
 var allTheSettings = {
   coinbaseApiKey: process.env.COINBASE_API_KEY,
   coinbaseApiSec: process.env.COINBASE_API_SECRET,
@@ -13,5 +15,23 @@ var allTheSettings = {
   mailerUser: process.env.MG_USER,
   mailerPass: process.env.MG_PASS
 };
+
+try {
+  var overrides = require('./configOverrides.js');
+
+  log.debug("Found overrides for", Object.keys(overrides));
+
+  for (var prop in overrides) {
+    if (overrides.hasOwnProperty(prop)) {
+      if (allTheSettings[prop]) {
+        allTheSettings[prop] = overrides[prop];
+      }
+    }
+  }
+} catch (e) {
+  // if no override file is found
+  log.debug("no overrides found, reverting to env vars");
+
+}
 
 module.exports = allTheSettings;
