@@ -3,14 +3,19 @@ var fs = require("fs");
 var path = require("path");
 var Sequelize = require("sequelize");
 var env = process.env.NODE_ENV || "development";
+
+// configure the connection to the db
 var sequelize = new Sequelize(config.dbUrl, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: true
   }
 });
+
+// an empty object
 var db = {};
 
+// connect to the db
 sequelize
   .authenticate()
   .then(function (err) {
@@ -19,6 +24,7 @@ sequelize
     console.log('Unable to connect to the database:', err);
   });
 
+// import all the models in `models/` and attached as to db[models]
 fs
   .readdirSync(__dirname)
   .filter(function (file) {
@@ -35,7 +41,9 @@ Object.keys(db).forEach(function (modelName) {
   }
 });
 
+// attach sequelize to the db object
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+// export the db object
 module.exports = db;
