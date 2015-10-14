@@ -2,12 +2,7 @@
 Asgard is the API and dashboard service for Payload applications.
 
 ## Installation
-1. Set up the project:
-  ```
-  git clone https://github.com/payloadpk/asgard.git
-  cd asgard
-  npm install
-  ```
+1. Set up the project with `git clone https://github.com/payloadpk/asgard.git && cd asgard && npm install`
 2. Set up the environment variables specified in `config/index.js`, or create and add them to `config/configOverrides.js`.
 3. Use forman to start with `foreman start` or `nf start`
 
