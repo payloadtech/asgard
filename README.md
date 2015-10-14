@@ -36,5 +36,6 @@ Contributions are welcome! Please contribute using [Github Flow](https://guides.
 3. [Open a pull request](https://github.com/fraction/readme-boilerplate/compare/).
 
 Please ensure your code is:
+
 1. [JSHint](http://jshint.com/) Compliant
 2. Documented with inline comments
