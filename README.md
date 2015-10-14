@@ -1,4 +1,4 @@
-# Asgard by Payload
+# Asgard
 Asgard is the API and dashboard service for Payload applications.
 
 ## Installation
