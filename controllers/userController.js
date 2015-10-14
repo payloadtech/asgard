@@ -4,7 +4,7 @@ var bcrypt = require('bcryptjs');
 
 module.exports = {
   post: function(req, res) {
-    // if no price is sent
+    // if the name, email and password aren't set
     if (!req.body.Name || !req.body.email || !req.body.password) {
       // reply with a 400 error saying that required parameter is missing
       res.status(400);
