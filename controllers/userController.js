@@ -5,7 +5,7 @@ var bcrypt = require('bcryptjs');
 module.exports = {
   post: function(req, res) {
     // if the name, email and password aren't set
-    if (!req.body.Name || !req.body.email || !req.body.password) {
+    if (!req.body.name || !req.body.email || !req.body.password) {
       // reply with a 400 error saying that required parameter is missing
       res.status(400);
       res.json({
@@ -19,17 +19,12 @@ module.exports = {
         payload: req.body
       });
     }
-
     var user = req.body;
-
-    console.log('USER PASSWORD : ' + user.password);
     bcrypt.genSalt(10, function(err, salt) {
-
       console.log('SALT : ' + salt);
       bcrypt.hash(user.password, salt, function(err, hash) {
         // Store hashed password in DB.
         user.password = hash;
-        console.log('USER PASSWORD AFTER : ' + user.password);
         models.User.create(user).then(function(user) {
           log.debug("Created user: " + user.id);
           // respond with the amount

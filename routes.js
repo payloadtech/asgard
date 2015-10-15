@@ -5,6 +5,7 @@ var userController = require('./controllers/userController');
 var authenticate = require('./lib/authenticate');
 var log = require("./lib/logger");
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('./config');
 
 // authenticate
 router.post('/authenticate', authenticate.auth);
@@ -22,7 +23,7 @@ router.use(function (req, res, next) {
   if (token) {
 
     // verifies secret and checks exp
-    jwt.verify(token, process.env.AUTH_SECRET, function (err, decoded) {
+    jwt.verify(token, config.authSecret, function (err, decoded) {
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
