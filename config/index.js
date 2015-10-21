@@ -11,7 +11,8 @@ var config = {
   mailerUser: process.env.MG_USER,
   mailerPass: process.env.MG_PASS,
   authSecret: process.env.AUTH_SECRET,
-  mysqlUrl: process.env.MYSQL_URL
+  mysqlUrl: process.env.MYSQL_URL,
+  sessionSecret: process.env.SESSION_SECRET
 };
 
 try {
