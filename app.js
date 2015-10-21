@@ -7,6 +7,11 @@ var routes = require('./routes.js');
 var debug = require('debug')('asgard:server');
 var http = require('http');
 var pg = require('pg');
+var config = require('./config');
+
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
 
 var app = express();
 
@@ -16,6 +21,13 @@ app.use(logger('dev'));
 // configure body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// required for passport
+app.use(session({ secret: config.sessionSecret })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
 
 // set the routes
 app.use('/', routes);
@@ -66,9 +78,9 @@ var server;
 
 models.sequelize.sync().then(function () {
   
-   // Create HTTP server, Listen on provided port, on all network interfaces.
+  // Create HTTP server, Listen on provided port, on all network interfaces.
     
-    server = app.listen(app.get('port'), function () {
+  server = app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + server.address().port);
     server.on('error', onError);
     server.on('listening', onListening);

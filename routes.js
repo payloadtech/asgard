@@ -5,6 +5,8 @@ var userController = require('./controllers/userController');
 var authenticate = require('./lib/authenticate');
 var log = require("./lib/logger");
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('./config');
+var passport = require('passport');
 
 // authenticate
 router.post('/authenticate', authenticate.auth);
@@ -12,37 +14,11 @@ router.post('/authenticate', authenticate.auth);
 // create new user
 router.post('/user', userController.post);
 
-// route middleware to verify a token
-router.use(function (req, res, next) {
-
-  // check header or url parameters or post parameters for token
-  var token = req.body.token || req.query.token || req.headers['x-access-token'];
-
-  // decode token
-  if (token) {
-
-    // verifies secret and checks exp
-    jwt.verify(token, process.env.AUTH_SECRET, function (err, decoded) {
-      if (err) {
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
-      } else {
-        // if everything is good, save to request for use in other routes
-        req.decoded = decoded;
-        next();
-      }
-    });
-
-  } else {
-
-    // if there is no token
-    // return an error
-    return res.status(403).send({
-      success: false,
-      message: 'No token provided.'
-    });
-
-  }
-});
+router.get('/user', passport.authenticate('local-login', {
+        successRedirect : '/user', // redirect to the secure profile section
+        failureRedirect : '//payload.pk', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
 // redirect home page to API documentation
 router.get('/', function (req, res, next) {
