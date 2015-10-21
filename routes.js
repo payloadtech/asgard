@@ -8,14 +8,12 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config');
 var passport = require('passport');
 
-
-
-
 router.post('/user', passport.authenticate('local-login', {
         successRedirect : userController.get, // redirect to the secure profile section
         failureRedirect : '//payload.pk', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
 
 // redirect home page to API documentation
 router.get('/', function (req, res, next) {
