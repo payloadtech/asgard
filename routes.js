@@ -8,14 +8,11 @@ var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config');
 var passport = require('passport');
 
-// authenticate
-router.post('/authenticate', authenticate.auth);
 
-// create new user
-router.post('/user', userController.post);
 
-router.get('/user', passport.authenticate('local-login', {
-        successRedirect : '/user', // redirect to the secure profile section
+
+router.post('/user', passport.authenticate('local-login', {
+        successRedirect : userController.get, // redirect to the secure profile section
         failureRedirect : '//payload.pk', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -30,8 +27,13 @@ router.post('/invoice', invoiceController.post);
 // get invoices
 router.get('/invoice', invoiceController.get);
 
-// get users
-router.get('/user', userController.get);
+// // get users
+// router.get('/user', userController.get);
+// 
+// 
+// // create new user
+// router.post('/user', userController.post);
+
 
 
 module.exports = router;

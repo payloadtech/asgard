@@ -22,6 +22,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+require('./lib/passport')(passport); // pass passport for configuration
+
 // required for passport
 app.use(session({ secret: config.sessionSecret })); // session secret
 app.use(passport.initialize());
