@@ -21,10 +21,12 @@
   "homepage": "https://github.com/payloadpk/asgard#readme",
   "dependencies": {
     "bcryptjs": "^2.2.2",
-    "body-parser": "^1.13.3",
+    "body-parser": "^1.14.1",
     "coinbase": "^1.0.3",
     "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.0",
     "debug": "^2.2.0",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-session": "^1.11.3",
     "jsonwebtoken": "^5.0.5",

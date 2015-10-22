@@ -13,6 +13,8 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var session = require('express-session');
 
+var cookieParser = require('cookie-parser');
+
 var app = express();
 
 // configure morgan
@@ -21,6 +23,7 @@ app.use(logger('dev'));
 // configure body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set('view engine', 'ejs'); // set up ejs for templating
 
 require('./lib/passport')(passport); // pass passport for configuration
 
@@ -30,10 +33,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-
 // set the routes
 app.use('/', routes);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -42,9 +43,7 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
