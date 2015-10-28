@@ -28,7 +28,7 @@ module.exports = {
     if (!req.body.currency) {
       req.body.currency = "USD";
     }
-    var rate;
+    var askRateUSD;
     // assign rate the value of the currency called
     switch (req.body.currency) {
       case 'USD':
@@ -41,7 +41,8 @@ module.exports = {
         rate = 'ratePKR';
     }
     // get the rate from memory
-    redis.get(rate, function (err, rateCurrent) {
+    redis.get(askRateUSD, function (err, rateCurrent) {
+      console.log("CURRENT RATE IS : " + rateCurrent);
       if (err) log.error("rateUSD fetch unsuccessful", err);
       var amount = parseFloat(req.body.price) / rateCurrent;
       // create an invoice object
