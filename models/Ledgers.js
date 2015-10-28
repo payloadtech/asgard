@@ -1,15 +1,35 @@
 module.exports = function (sequelize, DataTypes) {
-    var Invoice = sequelize.define('Ledgers', {
-		// invoice id
-        invoiceId: {
+    var Ledgers = sequelize.define('Ledgers', {
+        // amount in bitcoin
+        amount: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        // amount came from
+        from: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true
             }
         },
+        // amount sent to
+        to: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true
+            }
+        },
+        // transaction id
+        txId: {
+             type: DataTypes.STRING,
+        },
         // currency of price
-        invoiceCurrency: {
+        currency: {
             type: DataTypes.STRING,
             defaultValue: "PKR",
             isIn: [["PKR", "USD", "BTC"]],
@@ -26,18 +46,14 @@ module.exports = function (sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        // invoice amount in bitcoin
-        invoiceAmount: {
-            type: DataTypes.FLOAT,
-            allowNull: false,
-            validate: {
-                notEmpty: true
-            }
-        },     
+        // bank ref
+        bankref: {
+             type: DataTypes.STRING
+        },   
         // description
         description: {
-            type: DataTypes.STRING(100),
-        }     
+            type: DataTypes.STRING(200)
+        }
     });
-    return Invoice;
+    return Ledgers;
 };
