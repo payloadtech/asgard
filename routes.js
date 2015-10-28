@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var invoiceController = require('./controllers/invoiceController');
 var userController = require('./controllers/userController');
+var ledgerController = require('./controllers/ledgerController');
 var authenticate = require('./lib/authenticate');
 var log = require("./lib/logger");
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
@@ -97,5 +98,8 @@ router.post('/invoice', invoiceController.post);
 
 // get invoices
 router.get('/invoice', invoiceController.get);
+
+// get ledgers
+router.get('/ledgers', ledgerController.get);
 
 module.exports = router;
