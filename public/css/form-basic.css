@@ -1,0 +1,213 @@
+@font-face {
+	font-family: 'MyMUli';
+	src:url(../fonts/Muli-Light.ttf) format('truetype');
+}
+
+html{
+    background-color: #47b6d4;
+	font-family:MyMUli;
+	
+}
+
+.form-basic{
+    max-width: 740px;
+    padding: 10px 5px;
+     margin: 100px auto;
+    box-sizing: border-box;
+    font: bold 14px MyMUli;
+    text-align: center;
+	
+}
+
+.fontSize{
+	font-size:30px;
+
+	}
+
+.ss-required-asterisk{
+	color:#F8181B;
+	}
+
+
+#column-content {
+	max-width: 740px;
+	margin: 0 auto;
+  
+  font: 26px MyMUli;
+  color:#c5c5c5;
+}
+
+img {
+  vertical-align: middle;
+}
+myspan {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+.form-basic .form-row{
+    text-align: left;
+    margin-bottom: 22px;
+	color:#FFF;
+}
+
+.form-basic .form-title-row{
+    text-align: center;
+    margin-bottom: 55px;
+	color:#FFF;
+}
+
+/* The form title */
+
+.form-basic h1{
+    display: inline-block;
+    box-sizing: border-box;
+    color:  #FFF;
+    font-size: 24px;
+    padding: 0 10px 15px;
+    border-bottom: 2px solid #6caee0;
+    margin: 0;
+}
+
+.form-basic .form-row > label span{
+    display: inline-block;
+    box-sizing: border-box;
+    color:#FFFFFF;
+    width: 222px;
+    text-align: left;
+    vertical-align: top;
+    padding: 12px 25px;
+	font-size:18px;
+}
+
+.fontColor{
+	color:#F7F4F4;
+	
+	}
+
+.form-basic input{
+    color:  #5f5f5f;
+    box-sizing: border-box;
+    width: 300px;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 12px;
+    border: 1px solid #dbdbdb;
+	border-radius:5px;
+}
+
+.form-basic input[type=radio],
+.form-basic input[type=checkbox]{
+    box-shadow: none;
+    width: auto;
+	border-radius:5px;
+	
+}
+.form-basic input[type=radio]{
+	font-size:22px;
+}
+
+.form-basic select{
+    background-color: #ffffff;
+    color:  #5f5f5f;
+    box-sizing: border-box;
+    max-width: 240px;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 12px 8px;
+    border: 1px solid #dbdbdb;
+	border-radius:5px;
+}
+
+.form-basic textarea{
+    color:  #5f5f5f;
+    box-sizing: border-box;
+    width: 300px;
+    height: 80px;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    font: normal 13px MyMUli;
+    padding: 12px;
+    border: 1px solid #dbdbdb;
+    resize: vertical;
+	border-radius:5px;
+}
+
+.form-basic .form-radio-buttons{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.form-basic .form-radio-buttons > div{
+    margin-top: 10px;
+}
+
+.form-basic .form-radio-buttons label span{
+    margin-left: 8px;
+    color: #FFFFFF;
+    font-weight: normal;
+	font-size:18px;
+}
+
+.form-basic .form-radio-buttons input{
+    width: auto;
+}
+
+.form-basic button{
+    display: block;
+    border-radius: 2px;
+    background-color:  #c5c5c5;
+    color: #ffffff;
+    font-weight: bold;
+    box-shadow: 1px 2px 4px 0 rgba(0, 0, 0, 0.08);
+    padding: 14px 22px;
+    border: 0;
+    margin: 40px 183px 0;
+}
+
+/*	Making the form responsive. Remove this media query
+    if you don't need the form to work on mobile devices. */
+
+
+
+@media (max-width: 600px) {
+
+    .form-basic{
+        padding: 30px;
+        max-width: 480px;
+    }
+
+    .form-basic .form-row{
+        max-width: 300px;
+        margin: 25px auto;
+        text-align: left;
+    }
+
+    .form-basic .form-title-row{
+        margin-bottom: 50px;
+    }
+
+    .form-basic .form-row > label span{
+        display: block;
+        text-align: left;
+        padding: 0 0 15px;
+    }
+
+    .form-basic select{
+        width: 240px;
+    }
+
+    .form-basic input[type=checkbox]{
+        margin-top:0;
+    }
+
+    .form-basic .form-radio-buttons > div{
+        margin: 0 0 10px;
+    }
+
+    .form-basic button{
+        margin: 0;
+    }
+    html{
+		
+		background-image:none;
+		}
+}
