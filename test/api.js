@@ -29,6 +29,6 @@ describe('Invoice API tests', function(){
 
   // level 2
   it('Return "amount", "currency" and "rate" given "price"', function(){
-
+  
   });
 });
