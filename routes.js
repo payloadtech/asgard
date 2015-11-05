@@ -13,8 +13,8 @@ var passport = require('passport');
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    router.get('/', function (req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+    router.get('/', function(req, res) {
+        res.sendFile(__dirname + '/views/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 
     // =====================================

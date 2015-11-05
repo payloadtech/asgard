@@ -27,6 +27,8 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 require('./lib/passport')(passport); // pass passport for configuration
 
+app.use(express.static(__dirname + '/views'));                 // set the static files location /public/img will be /img for users
+
 // required for passport
 app.use(session({ secret: config.sessionSecret })); // session secret
 app.use(passport.initialize());
@@ -65,7 +67,6 @@ app.use(function (err, req, res, next) {
     error: {}
   });
 });
-
 
 /**
  * Get port from environment and store in Express.

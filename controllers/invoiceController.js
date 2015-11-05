@@ -93,6 +93,7 @@ module.exports = {
     models.Invoice.findAll().then(function (found) {
       var result = JSON.parse(JSON.stringify(found));
       res.json(result);
+      console.log("IN ninvoice");
     });
   }
 };
