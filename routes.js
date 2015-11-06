@@ -10,57 +10,56 @@ var config = require('./config');
 var passport = require('passport');
 
 
-    // =====================================
-    // HOME PAGE (with login links) ========
-    // =====================================
-    router.get('/', function(req, res) {
-        res.sendFile(__dirname + '/views/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-    });
+// =====================================
+// HOME PAGE (with login links) ========
+// =====================================
+router.get('/', function (req, res) {
+    // render the page and pass in any flash data if it exists
+    res.render('index.ejs');
+});
 
-    // =====================================
-    // LOGIN ===============================
-    // =====================================
-    // show the login form
-    router.get('/login', function (req, res) {
+// =====================================
+// LOGIN ===============================
+// =====================================
+// show the login form
+router.get('/login', function (req, res) {
 
-        // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') });
-    });
+    // render the page and pass in any flash data if it exists
+    res.render('login.ejs', { message: req.flash('loginMessage') });
+});
 
-    // process the login form
-    // app.post('/login', do all our passport stuff here);
+// process the login form
+// app.post('/login', do all our passport stuff here);
 
-    // =====================================
-    // SIGNUP ==============================
-    // =====================================
-    // show the signup form
-    router.get('/signup', function (req, res) {
+// =====================================
+// SIGNUP ==============================
+// =====================================
+// show the signup form
+router.get('/signup', function (req, res) {
 
-        // render the page and pass in any flash data if it exists
-        res.render('signup.ejs', { message: req.flash('signupMessage') });
-    });
+    // render the page and pass in any flash data if it exists
+    res.render('signup.ejs', { message: req.flash('signupMessage') });
+});
 
-    // process the signup form
-    // app.post('/signup', do all our passport stuff here);
+// process the signup form
+// app.post('/signup', do all our passport stuff here);
 
-    // =====================================
-    // PROFILE SECTION =====================
-    // =====================================
-    // we will want this protected so you have to be logged in to visit
-    // we will use route middleware to verify this (the isLoggedIn function)
-    router.get('/profile', isLoggedIn, function (req, res) {
-        res.render('profile.ejs', {
-            user: req.user // get the user out of session and pass to template
-        });
-    });
+// =====================================
+// PROFILE SECTION =====================
+// =====================================
+// we will want this protected so you have to be logged in to visit
+// we will use route middleware to verify this (the isLoggedIn function)
+router.get('/profile', isLoggedIn, function (req, res) {
+    res.render('signup.ejs', { user: req.user })
+});
 
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
-    router.get('/logout', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+// =====================================
+// LOGOUT ==============================
+// =====================================
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
     
     
 // route middleware to make sure a user is logged in
@@ -88,16 +87,11 @@ router.post('/login', passport.authenticate('local-login', {
     failureFlash: true // allow flash messages
 }));
 
-// redirect home page to API documentation
-router.get('/', function (req, res, next) {
-    res.redirect('//payload.pk/api');
-});
-
 // create new invoice
-router.post('/invoice', invoiceController.post);
+router.get('/invoice', isLoggedIn, invoiceController.get);
 
 // get invoices
-router.get('/invoice', invoiceController.get);
+router.post('/invoice', isLoggedIn, invoiceController.post);
 
 // get ledgers
 router.get('/ledgers', ledgerController.get);

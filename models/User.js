@@ -1,8 +1,12 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {
     // first name
     name: {
       type: DataTypes.STRING,
+    },
+    // amount
+    amount: {
+      type: DataTypes.FLOAT,
     },
     // email id
     email: {

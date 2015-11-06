@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
             }
         },
         // transaction id
-        txId: {
+        refId: {
              type: DataTypes.STRING,
         },
         // currency of price

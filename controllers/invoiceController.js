@@ -58,6 +58,7 @@ module.exports = {
         invoice.rate = rateCurrent;
         invoice.amount = amount;
         invoice.btcAddress = btcAddress;
+        invoice.userId = req.body.id;
 
         models.Invoice.create(invoice).then(function (invoice) {
           log.debug("Created invoice: " + invoice.id);
@@ -76,7 +77,6 @@ module.exports = {
               log.debug("Job id : " + job.id);
             }
           });
-
         }).catch(function (error) {
           console.log("ops: " + error);
           // reply with a 500 error
@@ -90,10 +90,10 @@ module.exports = {
     });
   },
   get: function (req, res) {
-    models.Invoice.findAll().then(function (found) {
+    var id = req.user.id;
+    models.Invoice.find({ where: { userId: id } }).then(function (found) {
       var result = JSON.parse(JSON.stringify(found));
       res.json(result);
-      console.log("IN ninvoice");
     });
   }
 };
