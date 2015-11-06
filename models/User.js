@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     // amount
     amount: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
     },
     // email id
     email: {

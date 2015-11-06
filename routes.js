@@ -50,7 +50,7 @@ router.get('/signup', function (req, res) {
 // we will want this protected so you have to be logged in to visit
 // we will use route middleware to verify this (the isLoggedIn function)
 router.get('/profile', isLoggedIn, function (req, res) {
-    res.render('signup.ejs', { user: req.user })
+    res.render('profile.ejs', { user: req.user })
 });
 
 // =====================================

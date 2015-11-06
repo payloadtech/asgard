@@ -1,0 +1,106 @@
+<!doctype html>
+<html ng-app="payload">
+
+<head>
+    <title>Payload</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="core.js"></script>
+
+    <!-- style -->
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 5px;
+        }
+
+        body {
+            background-color: "#f9f8f8";
+        }
+		.color{
+			color:#47b6d4;
+			}
+    </style>
+
+</head>
+
+
+
+<body ng-controller="mainController">
+    <!-- Top Navbar -->
+   
+  <div class="jumbotron text-cente color" style="background-color:#6e6e6e">
+        <h1  style="text-align:center">Payload</h1>
+    </div>
+    
+    
+    
+
+
+     <div class="row">
+
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-2" style="padding-left:40px">
+                <h3><span class="fa fa-user"></span>Name</h3>
+
+                    <p>
+                        <strong>id</strong>: {{user._id}}<br>
+                     
+                    </p>
+
+        </div>
+
+    </div>
+
+
+    <div align="center">
+
+    
+        <br>
+        <table style="width:60%; text-align:center">
+            <tr>
+                <th style="text-align:center" >
+                    <h3>From</h3></th>
+                <th style="text-align:center" >
+                    <h3>To</h3></th>
+                <th style="text-align:center" >
+                    <h3>Reference Id</h3></th>
+                <th style="text-align:center" >
+                    <h3>Current Rate</h3></th>
+            </tr>
+
+
+              <tr ng-repeat="todo in todos">
+                <td>{{ todo.createdAt | date}}</td>
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.price}}</td>
+                <td>{{ todo.amount | currency:'&#8360' }}</td>
+              
+            </tr>
+
+        </table>
+
+
+        <br>
+        <br>
+       
+    </div>
+    
+    
+   
+</body>
+
+</html>

@@ -11,7 +11,7 @@
     <!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <!-- load angular -->
-    <script src="../public/core.js"></script>
+    <script src="core.js"></script>
 
     <!-- style -->
     <style>
@@ -21,15 +21,18 @@
             border: 1px solid black;
             border-collapse: collapse;
         }
-        
+
         th,
         td {
             padding: 5px;
         }
-        
+
         body {
             background-color: "#f9f8f8";
         }
+		.color{
+			color:#47b6d4;
+			}
     </style>
 
 </head>
@@ -38,37 +41,36 @@
 
 <body ng-controller="mainController">
     <!-- Top Navbar -->
-    <div class="jumbotron text-center">
-        <h1>Invoices are : <span class="label label-info">{{ todos.length}}</span></h1>
+   
+  <div class="jumbotron text-cente color" style="background-color:#6e6e6e">
+        <h1  style="text-align:center">Payload</h1>
+    </div>
+    
+    
+     <div class="text-center">
+        <h5>Invoices are : <span class="label label-info">{{ todos.length }}</span></h5>
     </div>
 
-    <nav class="navbar navbar-basic" style="background-color:#4e5f6f ; height:80px">
-        <div class="container-fluid">
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="inverseNavbar1">
+     <div class="row">
 
-                <ul class="nav navbar-nav">
-                    <a class="navbar-brand"><img src="images/new.png" alt="payload"></a>
-                </ul>
+        <!-- LOCAL INFORMATION -->
+        <div class="col-sm-2" style="padding-left:40px">
+                <h3><span class="fa fa-user"></span>Name</h3>
 
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
+                    <p>
+                        <strong>id</strong>: {{user._id}}<br>
+                     
+                    </p>
+
         </div>
 
-    </nav>
-
-
-    <div style="margin-top:40px ; margin-left:40px" class="col-lg-2">
-
-        <img class="img-circle col-lg-10" src="images/bit.png" alt="image">
-
     </div>
 
-    <div align="center" class="col-lg-12">
 
-        <h1>Balance:</h1>
+    <div align="center">
+
+        <h1 style="text-align:center">Balance:</h1>
 
         <br>
         <br>
@@ -94,24 +96,25 @@
 
             </tr>
 
-            <tr ng-repeat="todo in todos">
-                <td>{{ todo.createdAt}}</td>
+              <tr ng-repeat="todo in todos">
+                <td>{{ todo.createdAt | date}}</td>
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.price}}</td>
-                <td>{{ todo.amount }}</td>
+                <td>{{ todo.amount | currency:'&#8360' }}</td>
                 <td>{{ todo.status }}</td>
             </tr>
-
 
         </table>
 
 
         <br>
         <br>
-        <!--<button type="submit">SELL </button>-->
+        <button type="submit">SELL </button>
 
     </div>
-
+    
+    
+   
 </body>
 
 </html>

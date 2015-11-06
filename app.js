@@ -27,7 +27,7 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 
 require('./lib/passport')(passport); // pass passport for configuration
 
-app.use(express.static(__dirname + '/views'));                 // set the static files location /public/img will be /img for users
+app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
 
 // required for passport
 app.use(session({ secret: config.sessionSecret })); // session secret
