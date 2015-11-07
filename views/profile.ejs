@@ -34,6 +34,11 @@
 </head>
 
 <body ng-controller="mainController">
+
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
     <!-- Top Navbar -->
     <div class="jumbotron text-center">
         <h1>Invoices are : <span class="label label-info">{{ invoices.length}}</span></h1>
@@ -91,7 +96,9 @@
         </table>
         <br>
         <br>
-        <!--<button type="submit">SELL </button>-->
+        <a href="/kyc"><button>Info form</button></a> 
+        <a href="/sell"><button>SELL </button></a> 
+        <a href="/logout"><button>Logout </button></a>
     </div>
 </body>
 </html>

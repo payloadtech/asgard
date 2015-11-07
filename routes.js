@@ -3,6 +3,7 @@ var router = express.Router();
 var invoiceController = require('./controllers/invoiceController');
 var userController = require('./controllers/userController');
 var ledgerController = require('./controllers/ledgerController');
+var transactionController = require('./controllers/transactionController');
 var authenticate = require('./lib/authenticate');
 var log = require("./lib/logger");
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
@@ -47,11 +48,18 @@ router.get('/signup', function (req, res) {
 // =====================================
 // PROFILE SECTION =====================
 // =====================================
-// we will want this protected so you have to be logged in to visit
-// we will use route middleware to verify this (the isLoggedIn function)
+
 router.get('/profile', isLoggedIn, function (req, res) {
     res.render('profile.ejs', { user: req.user })
 });
+
+// KYC from
+router.get('/kyc', isLoggedIn, function (req, res) {
+    res.render('kyc.ejs', { user: req.user })
+});
+
+// Sell Bitcoin from
+router.get('/sell', isLoggedIn, transactionController.sell);
 
 // =====================================
 // LOGOUT ==============================
@@ -60,7 +68,23 @@ router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
 });
-    
+
+// =====================================
+// Transaction  ========================
+// =====================================
+
+router.post('/kyc', isLoggedIn, transactionController.kyc);
+
+// make new invoice
+router.post('/qr', isLoggedIn, invoiceController.post);
+
+// create new invoice
+router.get('/invoice', isLoggedIn, invoiceController.get);
+
+// get ledgers
+router.get('/ledgers', isLoggedIn, ledgerController.get);
+
+// ===================================
     
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
@@ -86,14 +110,5 @@ router.post('/login', passport.authenticate('local-login', {
     failureRedirect: '/login', // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
 }));
-
-// create new invoice
-router.get('/invoice', isLoggedIn, invoiceController.get);
-
-// get invoices
-router.post('/invoice', isLoggedIn, invoiceController.post);
-
-// get ledgers
-router.get('/ledgers', ledgerController.get);
 
 module.exports = router;
