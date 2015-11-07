@@ -58,6 +58,10 @@ module.exports = function (sequelize, DataTypes) {
     },
     bankName: {
       type: DataTypes.STRING,
+    },
+    verified: {
+      type: DataTypes.STRING,
+      defaultValue: "unVerified"
     }
   });
   return User;
