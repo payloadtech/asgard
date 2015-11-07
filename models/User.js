@@ -62,6 +62,15 @@ module.exports = function (sequelize, DataTypes) {
     verified: {
       type: DataTypes.STRING,
       defaultValue: "unVerified"
+    },
+    // the type of user
+    type: {
+      type: DataTypes.STRING,
+      defaultValue: "user",
+      allowNull: false,
+      valdate: {
+        isIn: [['user', 'admin']],
+      }
     }
   });
   return User;
