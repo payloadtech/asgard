@@ -25,6 +25,39 @@ module.exports = function (sequelize, DataTypes) {
         notEmpty: true,
         len: [4, 200]
       }
+    },
+    dob: {
+      type: DataTypes.STRING,
+    },
+    cnic: {
+      type: DataTypes.STRING
+    },
+    ntn: {
+      type: DataTypes.STRING,
+    },
+    fatherName: {
+      type: DataTypes.STRING,
+    },
+    occupation: {
+      type: DataTypes.TEXT,
+    },
+    cellNo: {
+      type: DataTypes.STRING,
+    },
+    landLineNo: {
+      type: DataTypes.STRING,
+    },
+    parmanentAdd: {
+      type: DataTypes.TEXT,
+    },
+    mailAdd: {
+      type: DataTypes.TEXT,
+    },
+    bankAccNo: {
+      type: DataTypes.STRING,
+    },
+    bankName: {
+      type: DataTypes.STRING,
     }
   });
   return User;
