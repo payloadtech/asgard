@@ -3,7 +3,6 @@ var payload = angular.module('payload', []);
 
 function mainController($scope, $http) {
     $scope.formData = {};
-    console.log("HERE");
     // when landing on the page, get all todos and show them
     $http.get('/invoice')
         .success(function(data) {
@@ -26,7 +25,17 @@ function mainController($scope, $http) {
                 console.log('Error: ' + data);
             });
     };
-
-    
-
+}
+function ledgerController($scope, $http) {
+    $scope.formData = {};
+    // when landing on the page, get all todos and show them
+    $http.get('/ledger')
+        .success(function(data) {
+            $scope.ledger = data;
+            console.log(data);
+        })
+        .error(function(data) {
+            console.log('Error: ' + data);
+        });
+    };
 }
