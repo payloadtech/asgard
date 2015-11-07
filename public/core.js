@@ -6,7 +6,7 @@ function mainController($scope, $http) {
     // when landing on the page, get all todos and show them
     $http.get('/invoice')
         .success(function(data) {
-            $scope.todos = data;
+            $scope.invoices = data;
             console.log(data);
         })
         .error(function(data) {
