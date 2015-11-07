@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Payload | Form</title>
+    <link rel="shortcut icon" href="http://www.favicon-generator.org/favicon-generator/htdocs/favicons/2015-07-30/7279aa97a8953329f7d7369ca1953d22.ico"
+    />
+    <link rel="stylesheet" href="../public/css/form-basic.css">
+</head>
+<div id="column-content">
+    <img alt="payload" src="../public/images/logo.png">
+    <myspan>Payload</myspan>
+</div>
+
+<body style="background-color:#47b6d4">
+    <div style="float:right; position:fixed ; right:0 ; bottom:0">
+        <img>
+    </div>
+    <!-- You only need this form and the form-basic.css -->
+
+    <form class="form-basic" method="post" action="#">
+        <div class="form-row">
+            <div class="fontSize">Cell Bitcoins </div>
+        </div>
+        <div class="form-row">
+            <div class="ss-required-asterisk" aria-hidden="true">* Required </div>
+        </div>
+        <div class="form-row">
+            <label>
+                <span>Amount in Bitcoin*</span>
+                <input type="text" name="bitcoin" required>
+            </label>
+        </div>
+        <div class="form-row">
+            <label>
+                <span>Description*</span>
+                <textarea name="description"></textarea>
+            </label>
+        </div>
+        <div class="form-row">
+            <button type="submit">Next</button>
+        </div>
+    </form>
+</body>
+
+</html>
