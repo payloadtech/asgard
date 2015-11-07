@@ -10,7 +10,7 @@
     <!-- load jquery -->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <!-- load angular -->
-    <script src="../public/core.js"></script>
+    <script src="core.js"></script>
 
     <!-- style -->
     <style>
@@ -36,7 +36,7 @@
 <body ng-controller="mainController">
 
     <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
+        <div class="alert alert-success"><%= message %></div>
     <% } %>
 
     <!-- Top Navbar -->
@@ -51,7 +51,7 @@
             <div class="collapse navbar-collapse" id="inverseNavbar1">
 
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand"><img src="../public/images/new.png" alt="payload"></a>
+                    <a class="navbar-brand"><img src="images/new.png" alt="payload"></a>
                 </ul>
 
                 <!-- /.navbar-collapse -->
@@ -60,7 +60,7 @@
         </div>
     </nav>
     <div style="margin-top:40px ; margin-left:40px" class="col-lg-2">
-        <img class="img-circle col-lg-10" src="../public/images/bit.png" alt="image">
+        <img class="img-circle col-lg-10" src="images/bit.png" alt="image">
     </div>
 
     <div align="center" class="col-lg-12">

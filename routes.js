@@ -50,7 +50,7 @@ router.get('/signup', function (req, res) {
 // =====================================
 
 router.get('/profile', isLoggedIn, function (req, res) {
-    res.render('profile.ejs', { user: req.user })
+    res.render('profile.ejs', { user: req.user , message:req.flash('message')  })
 });
 
 // KYC from
