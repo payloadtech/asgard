@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define('User', {
     // first name
     name: {
@@ -30,7 +30,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
     },
     cnic: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        is: /^[1-4]{1}[0-9]{4}(-)?[0-9]{7}(-)?[0-9]{1}$/
+      }
     },
     ntn: {
       type: DataTypes.STRING,
@@ -55,13 +58,15 @@ module.exports = function (sequelize, DataTypes) {
     },
     bankAccNo: {
       type: DataTypes.STRING,
+
     },
     bankName: {
       type: DataTypes.STRING,
     },
+    // the current status of the user,
     verified: {
       type: DataTypes.STRING,
-      defaultValue: "unVerified"
+      defaultValue: "unverified" // "unverified", "verified", "suspended", or disabled
     },
     // the type of user
     type: {
@@ -69,7 +74,9 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: "user",
       allowNull: false,
       valdate: {
-        isIn: [['user', 'admin']],
+        isIn: [
+          ['user', 'admin']
+        ],
       }
     }
   });
