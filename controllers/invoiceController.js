@@ -26,23 +26,24 @@ module.exports = {
     }
     // if no currency is sent, assume it is PKR
     if (!req.body.currency) {
-      req.body.currency = "USD";
+      req.body.currency = "PKR";
     }
+    var rate;
     // assign rate the value of the currency called
     switch (req.body.currency) {
       case 'USD':
-        rate = 'rateUSD';
+        rate = 'askRateUSD';
         break;
       case 'PKR':
-        rate = 'ratePKR';
+        rate = 'askRatePKR';
         break;
       default:
-        rate = 'ratePKR';
+        rate = 'askRatePKR';
     }
     // get the rate from memory
-    redis.get("askRateUSD", function (err, rateCurrent) {
+    redis.get(rate, function (err, rateCurrent) {
       console.log("CURRENT RATE IS : " + rateCurrent);
-      if (err) log.error("rateUSD fetch unsuccessful", err);
+      if (err) log.error("rate fetch unsuccessful", err);
       var amount = parseFloat(req.body.price) / rateCurrent;
       // create an invoice object
       wallet.createAddress({
@@ -58,13 +59,15 @@ module.exports = {
         invoice.rate = rateCurrent;
         invoice.amount = amount;
         invoice.btcAddress = btcAddress;
-        invoice.userId = req.body.id;
+        invoice.userId = req.user.id;
 
         models.Invoice.create(invoice).then(function (invoice) {
           log.debug("Created invoice: " + invoice.id);
-
+          
           // respond with the amount
-          res.json(invoice);
+          req.flash('address', btcAddress);
+          req.flash('amount', amount);
+          req.flash('price', amount * rateCurrent);
 
           // create confirmation jobs
           var job = queue.create('transactionHash', {
@@ -74,7 +77,10 @@ module.exports = {
               log.error("Kue job error : " + err);
             }
             else {
-              log.debug("Job id : " + job.id);
+              log.info("Job id : " + job.id);
+              
+              // redirect to qr page
+              res.redirect("/qr");
             }
           });
         }).catch(function (error) {
@@ -91,7 +97,7 @@ module.exports = {
   },
   get: function (req, res) {
     var id = req.user.id;
-    models.Invoice.find({ where: { userId: id } }).then(function (found) {
+    models.Invoice.findAll({ where: { userId: id } }).then(function (found) {
       var result = JSON.parse(JSON.stringify(found));
       res.json(result);
     });
