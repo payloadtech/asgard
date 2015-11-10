@@ -9,7 +9,16 @@ var queue = require('../lib/queue.js');
 
 module.exports = {
 	sell: function (req, res) {
-
+		var id = req.user.id;
+		models.User.find({ where: { id: id } }).then(function (found) {
+			if (found.verified === 'verified') {
+				res.render('sell.ejs', { user: req.user })
+			}
+			else {
+				req.flash('message', 'Oops! Your account status is ' + found.verified)
+				res.redirect("/profile");
+			}
+		});
 	},
 	kyc: function (req, res) {
 
