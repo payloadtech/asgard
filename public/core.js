@@ -17,6 +17,7 @@ function mainController($scope, $http) {
             console.log('Error: ' + data);
         });
 
+
     // when submitting the add form, send the text to the node API
     $scope.createInvoice = function () {
         $http.post('/invoice', $scope.formData)
@@ -35,8 +36,12 @@ function ledgerController($scope, $http) {
     // when landing on the page, get all todos and show them
     $http.get('/ledger')
         .success(function (data) {
-            $scope.ledger = data;
-            console.log(data);
+            if (data != 'null') {
+                $scope.ledgers = data;
+            }
+            else {
+                $scope.ledgers = {};
+            }
         })
         .error(function (data) {
             console.log('Error: ' + data);
