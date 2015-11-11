@@ -35,14 +35,9 @@
 
 <body ng-controller="mainController">
 
-    <% if (message.length > 0) { %>
-        <div class="alert alert-success"><%= message %></div>
-    <% } %>
+   
 
     <!-- Top Navbar -->
-    <div class="jumbotron text-center">
-        <h1>Invoices are : <span class="label label-info">{{ invoices.length}}</span></h1>
-    </div>
 
     <nav class="navbar navbar-basic" style="background-color:#4e5f6f ; height:80px">
         <div class="container-fluid">
@@ -59,13 +54,28 @@
             <!-- /.container-fluid -->
         </div>
     </nav>
-    <div style="margin-top:40px ; margin-left:40px" class="col-lg-2">
-        <img class="img-circle col-lg-10" src="images/bit.png" alt="image">
+    
+     <% if (message.length > 0) { %>
+        <div class="alert alert-success"><%= message %></div>
+    <% } %>
+    
+     <div class="col-lg-12" align="center" style="height:80px">
+            <div class="col-lg-5" style="margin: 0 auto;float:none; border: 2px solid #4E5F6F; border-radius: 10px">
+                <%= user.id %>
+                <br>
+                <%= user.email %>
+            </div>
     </div>
+    
+    <div class="jumbotron text-center">
+        <h1>Invoices are : <span class="label label-info">{{ invoices.length}}</span></h1>
+    </div>
+    
+   
 
     <div align="center" class="col-lg-12">
 
-        <h1>Balance:</h1>
+        <h1>Balance:<%= user.amount %></h1>
 
         <br>
         <br>
@@ -87,18 +97,23 @@
                     <h5>PKR</h5></th>
             </tr>
             <tr ng-repeat="invoice in invoices">
-                <td>{{ todo.createdAt}}</td>
-                <td>{{ todo.id }}</td>
-                <td>{{ todo.price}}</td>
-                <td>{{ todo.amount }}</td>
-                <td>{{ todo.status }}</td>
+                <td>{{ invoice.createdAt}}</td>
+                <td>{{ invoice.id }}</td>
+                <td>{{ invoice.price}}</td>
+                <td>{{ invoice.amount }}</td>
+                <td>{{ invoice.status }}</td>
             </tr>
         </table>
         <br>
         <br>
-        <a href="/kyc"><button>Info form</button></a> 
-        <a href="/sell"><button>SELL </button></a> 
-        <a href="/logout"><button>Logout </button></a>
+               
+        <a href="/profile"><button class="btn btn-primary">Profile </button></a> 
+        <a href="/ledgers"><button class="btn btn-primary">Ledger </button></a> 
+        <% if(user.verified === 'unverified') { %>
+            <a href="/kyc"><button class="btn btn-primary">Info form</button></a> 
+        <% } %>
+        <a href="/sell"><button class="btn btn-primary">Sell Bitcoins </button></a> 
+        <a href="/logout"><button class="btn btn-warning">Logout </button></a>
     </div>
 </body>
 </html>

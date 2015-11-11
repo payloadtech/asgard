@@ -30,30 +30,41 @@
         body {
             background-color: "#f9f8f8";
         }
-        
-        .color {
-            color: #47b6d4;
-        }
     </style>
 
 </head>
 
 <body ng-controller="ledgerController">
-    <!-- Top Navbar -->
 
-    <div class="jumbotron text-cente color" style="background-color:#6e6e6e">
-        <h1 style="text-align:center">Payload</h1>
-    </div>
-    <div class="row">
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-2" style="padding-left:40px">
-            <h3><span class="fa fa-user"></span>Name : <%= user.name %> </h3>
-            <p>
-                <strong>ID </strong>:
-                <%= user.id %>
-            </p>
+    <!-- Top Navbar -->
+     <nav class="navbar navbar-basic" style="background-color:#4e5f6f ; height:80px">
+        <div class="container-fluid">
+           <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="inverseNavbar1">
+
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand"><img src="images/new.png" alt="payload"></a>
+                </ul>
+
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </div>
+    </nav>
+    
+    <div class="col-lg-12" align="center" style="height:80px">
+            <div class="col-lg-5" style="margin: 0 auto;float:none; border: 2px solid #4E5F6F; border-radius: 10px">
+                <%= user.id %>
+                <br>
+                <%= user.email %>
+            </div>
     </div>
+    
+    <div class="jumbotron text-center">
+        <h1>Ledgers are : <span class="label label-info">{{ ledgers.length }}</span></h1>
+    </div>
+
+   
     <div align="center">
         <br>
         <table style="width:60%; text-align:center">
@@ -71,7 +82,7 @@
                 <th style="text-align:center">
                     <h3>Currency</h3></th>
             </tr>
-            <tr ng-repeat="todo in todos">
+            <tr ng-repeat="ledger in ledgers">
                 <td>{{ ledger.from }}</td>
                 <td>{{ ledger.to }}</td>
                 <td>{{ ledger.refId }}</td>
@@ -82,6 +93,13 @@
         </table>
         <br>
         <br>
+        <a href="/profile"><button class="btn btn-primary">Profile </button></a> 
+        <a href="/ledgers"><button class="btn btn-primary">Ledger </button></a> 
+        <% if(user.verified === 'unverified') { %>
+            <a href="/kyc"><button class="btn btn-primary">Info form</button></a> 
+        <% } %>
+        <a href="/sell"><button class="btn btn-primary">Sell Bitcoins </button></a> 
+        <a href="/logout"><button class="btn btn-warning">Logout </button></a>
     </div>
 </body>
 
