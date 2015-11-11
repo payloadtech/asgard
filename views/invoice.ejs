@@ -1,0 +1,158 @@
+<!doctype html>
+<html ng-app="payload">
+
+<head>
+    <title>Payload | Ledger</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="core.js"></script>
+
+    <!-- style -->
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            padding: 5px;
+        }
+        
+        body {
+            background-color: "#f9f8f8";
+        }
+        
+        .color {
+            color: #47b6d4;
+        }
+    </style>
+
+</head>
+
+<body ng-controller="ledgerController">
+    <!-- Top Navbar -->
+
+    <div class="jumbotron text-cente color" style="background-color:#6e6e6e">
+        <h1 style="text-align:center">Payload</h1>
+    </div>
+   <!-- <div class="row">
+        <div class="col-sm-2" style="padding-left:40px">
+            <h3><span class="fa fa-user"></span>Name : <%= user.name %> </h3>
+            <p>
+                <strong>ID </strong>:
+                <%= user.id %>
+            </p>
+        </div>
+    </div>-->
+    <div align="center">
+        <br>
+       
+       <table style="width:50%">
+  <tr>
+    <th>Column 1</th>
+    <th>Column 2</th>		
+    
+  </tr>
+ 
+  <tr style="text-align:center">
+    <td>Price</td>
+    <td></td>		
+
+  </tr>
+  <tr style="text-align:center">
+    <td>Currency</td>
+    <td></td>		
+    
+  </tr>
+  <tr style="text-align:center">
+    <td>Rate</td>
+    <td></td>		
+   
+  </tr>
+  <tr style="text-align:center">
+    <td>Amount</td>
+    <td></td>		
+   
+  </tr>
+  <tr style="text-align:center">
+    <td>BTC Address</td>
+    <td></td>		
+   
+  </tr>
+  <tr style="text-align:center">
+    <td>Transaction Id</td>
+    <td></td>		
+   
+  </tr>
+  <tr style="text-align:center">
+    <td>User Id</td>
+    <td></td>		
+   
+  </tr>
+  <tr style="text-align:center">
+    <td>Notification Url</td>
+    <td></td>		
+   
+  </tr>
+  <tr style="text-align:center">
+    <td>Buyer Name</td>
+    <td></td>		
+   
+  </tr>
+    <tr style="text-align:center">
+    <td>Buyer Address</td>
+    <td></td>		
+   
+  </tr>
+    <tr style="text-align:center">
+    <td>Buyer Locality</td>
+    <td></td>		
+   
+  </tr>
+    <tr style="text-align:center">
+    <td>Buyer Region</td>
+    <td></td>		
+   
+  </tr>
+    <tr style="text-align:center">
+    <td>Buyer Postel Code</td>
+    <td></td>		
+   
+  </tr>
+   <tr style="text-align:center">
+    <td>Buyer Country</td>
+    <td></td>		
+   
+  </tr>
+   <tr style="text-align:center">
+    <td>Buyer Email</td>
+    <td></td>		
+   
+  </tr>
+   <tr style="text-align:center">
+    <td>Buyer Phone</td>
+    <td></td>		
+   
+  </tr>
+   <tr style="text-align:center">
+    <td>Status</td>
+    <td></td>		
+   
+  </tr>
+ 
+</table>
+
+
+    </div>
+</body>
+
+</html>
