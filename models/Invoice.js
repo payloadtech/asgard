@@ -63,41 +63,6 @@ module.exports = function (sequelize, DataTypes) {
         redirectUrl: {
             type: DataTypes.STRING,
         },
-        // item description
-        itemDesc: {
-            type: DataTypes.STRING(100),
-        },
-        // others
-        physical: {
-            type: DataTypes.BOOLEAN,
-            defaultsTo: false
-        },
-        // buyer details
-        buyerName: {
-            type: DataTypes.STRING,
-        },
-        buyerAddress: {
-            type: DataTypes.STRING,
-        },
-        buyerLocality: {
-            type: DataTypes.STRING,
-        },
-        buyerRegion: {
-            type: DataTypes.STRING,
-        },
-        buyerPostelCode: {
-            type: DataTypes.STRING,
-        },
-        buyerCountry: {
-            type: DataTypes.STRING,
-        },
-        buyerEmail: {
-            type: DataTypes.STRING,
-            email: true
-        },
-        buyerPhone: {
-            type: DataTypes.INTEGER,
-        },
         // status of invoice i.e confirmed
         status: {
             type: DataTypes.STRING,

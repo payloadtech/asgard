@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Invoice = sequelize.define('Invoice', {
+  var Bill = sequelize.define('Bill', {
 
     createdDate: { // Time of bill creation
       type: DataTypes.DATE
@@ -70,11 +70,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     expireDate: { // UTC date, ISO-8601 format yyyy-mm-dd or yyyy-mm-ddThh:mm:ssZ. Default is current time.
       type: DataTypes.DATE
-    },
-    items: { //
-
     }
   });
-  return Invoice;
-
+  return Bill;
 };
