@@ -30,6 +30,9 @@ var controller = function() {
       'items'
     ]);
 
+    // the creator of the bill
+    bill.owner = req.user.id;
+
     self.createBill(bill, function(err, savedBill) {
       res.json({
         'success': true,
