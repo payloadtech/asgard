@@ -6,19 +6,24 @@ function mainController($scope, $http) {
     // when landing on the page, get all todos and show them
     $http.get('/invoice')
         .success(function (data) {
-            $scope.invoices = data;
-            console.log(data);
+            if (data != 'null') {
+                $scope.invoices = data;
+            }
+            else {
+                $scope.invoices = {};
+            }
         })
         .error(function (data) {
             console.log('Error: ' + data);
         });
 
+
     // when submitting the add form, send the text to the node API
-    $scope.createTodo = function () {
+    $scope.createInvoice = function () {
         $http.post('/invoice', $scope.formData)
             .success(function (data) {
                 $scope.formData = {}; // clear the form so our user is ready to enter another
-                $scope.todos = data;
+                $scope.invoices = data;
                 console.log(data);
             })
             .error(function (data) {
@@ -31,8 +36,12 @@ function ledgerController($scope, $http) {
     // when landing on the page, get all todos and show them
     $http.get('/ledger')
         .success(function (data) {
-            $scope.ledger = data;
-            console.log(data);
+            if (data != 'null') {
+                $scope.ledgers = data;
+            }
+            else {
+                $scope.ledgers = {};
+            }
         })
         .error(function (data) {
             console.log('Error: ' + data);

@@ -45,7 +45,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         // user id from where invoice is created
         userId: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
         },
         // notification settings
         notificationUrl: {

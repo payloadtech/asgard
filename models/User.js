@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define('User', {
     // first name
     name: {
@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     // amount
     amount: {
       type: DataTypes.INTEGER,
+      defaultValue: 0
     },
     // email id
     email: {
@@ -66,7 +67,7 @@ module.exports = function(sequelize, DataTypes) {
     // the current status of the user,
     verified: {
       type: DataTypes.STRING,
-      defaultValue: "unverified" // "unverified", "verified", "suspended", or disabled
+      defaultValue: "unverified" // "unverified", "verified", "suspended", "pending" or disabled
     },
     // the type of user
     type: {
@@ -74,9 +75,7 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: "user",
       allowNull: false,
       valdate: {
-        isIn: [
-          ['user', 'admin']
-        ],
+        isIn: [['user', 'admin']],
       }
     }
   });

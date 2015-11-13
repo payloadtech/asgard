@@ -58,6 +58,12 @@ router.get('/kyc', isLoggedIn, function (req, res) {
     res.render('kyc.ejs', { user: req.user })
 });
 
+// qr code
+router.get('/qr', isLoggedIn, function (req, res) {
+    res.render('qr.ejs', { user: req.user , amount:req.flash('amount') , address:req.flash('address') , price:req.flash('price')})
+});
+
+
 // Sell Bitcoin from
 router.get('/sell', isLoggedIn, transactionController.sell);
 
@@ -82,8 +88,12 @@ router.post('/qr', isLoggedIn, invoiceController.post);
 router.get('/invoice', isLoggedIn, invoiceController.get);
 
 // get ledgers
-router.get('/ledgers', isLoggedIn, ledgerController.get);
+router.get('/ledger', isLoggedIn, ledgerController.get);
 
+// get ledgers page
+router.get('/ledgers', function (req, res) {
+    res.render('ledger.ejs', { user: req.user })
+});
 // ===================================
     
 // route middleware to make sure a user is logged in

@@ -5,13 +5,8 @@
     <title>Payload</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
     <!-- load bootstrap -->
-
-    <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <!-- load angular -->
-    <script src="core.js"></script>
+    
+    <script src="js/jquery.js"></script>
 
     <!-- style -->
     <style>
@@ -36,23 +31,28 @@
     </div>
 
 
-    <div align="center">
-        <img src="" height="400" width="400">
-
+    <img id="myimage" align="center" />
+        <div style="text-align:center">
+        <h3>Scan to Make Payment</h3>
     </div>
     <br>
     <br>
     <br>
     <div align="center">
-        <label>BTC | PKR </label>
+        <label>BTC | PKR </label><br>
         <label>
-            <%= invoice.amount %> |
-                <%= invoice.price %>
+            <%= amount %> |
+                <%= price %>
         </label>
         <br>
         <br>
-        <a href="/">Home</a>
+          <a href="/profile">Home</a>
     </div>
 </body>
 
 </html>
+
+<script>
+    document.getElementById("myimage").src = "https://chart.googleapis.com/chart?cht=qr&chs=400x400&chl=%20bitcoin%3A" + "<%= address %>" + "%3Famount%3D" + "<%= amount %>";
+    console.log(document.getElementById("myimage").src);
+</script>
