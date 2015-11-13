@@ -1,6 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
   var Bill = sequelize.define('Bill', {
 
+    owner: { // creator of the bill
+      type: DataTypes.STRING
+    },
+
     createdDate: { // Time of bill creation
       type: DataTypes.DATE
     },
