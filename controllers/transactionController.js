@@ -12,10 +12,10 @@ module.exports = {
 		var id = req.user.id;
 		models.User.find({ where: { id: id } }).then(function (found) {
 			if (found.verified === 'verified') {
-				res.render('sell.ejs', { user: req.user })
+				res.render('sell.ejs', { user: req.user });
 			}
 			else {
-				req.flash('message', 'Oops! Your account status is ' + found.verified)
+				req.flash('message', 'Oops! Your account status is ' + found.verified);
 				res.redirect("/profile");
 			}
 		});
@@ -46,9 +46,9 @@ module.exports = {
 					bankName: req.body.bankName,
 					verified: "pending"
 				}).then(function () {
-					
+
 					// return to user profile
-					req.flash('message', 'Thanks! Wait until your account status is verified. :)')
+					req.flash('message', 'Thanks! Wait until your account status is verified. :)');
 					res.redirect("/profile");
 
 				}).catch(function (error) {
@@ -56,9 +56,9 @@ module.exports = {
 				});
 			}
 			else {
-								
+
 				// return to user profile
-				req.flash('message', 'Oops! Your account status is ' + found.verified)
+				req.flash('message', 'Oops! Your account status is ' + found.verified);
 				res.redirect("/profile");
 			}
 		}).catch(function (error) {
