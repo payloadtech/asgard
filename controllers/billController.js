@@ -14,7 +14,7 @@ var controller = function() {
   // route handler
   this.routerHandler = function(req, res) {
     bill = _.pick(req.body, [
-      'number',
+      'merchantBillId',
       'currency',
       'name',
       'address1',

@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.BOOLEAN
     },
 
-    number: { // Bill identifier, specified by merchant
+    merchantBillId: { // Bill identifier, specified by merchant
       type: DataTypes.STRING
     },
 
