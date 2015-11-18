@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var invoiceController = require('./controllers/invoiceController');
+var invoiceController = require('./controllers/invoiceController.js');
 var userController = require('./controllers/userController');
 var ledgerController = require('./controllers/ledgerController');
 var transactionController = require('./controllers/transactionController');
@@ -93,7 +93,7 @@ router.get('/logout', function(req, res) {
 // Transaction  ========================
 // =====================================
 
-router.post('/kyc', isLoggedIn, transactionController.kyc);
+router.post('/kyc', isLoggedIn, userController.kyc);
 
 // make new invoice
 router.post('/qr', isLoggedIn, invoiceController.post);

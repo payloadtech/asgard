@@ -1,4 +1,6 @@
 var log = require('../lib/logger');
+var fs = require("fs");
+var path = require("path");
 
 var controllers = {};
 

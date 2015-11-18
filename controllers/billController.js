@@ -12,7 +12,7 @@ var controller = function() {
   };
 
   // route handler
-  this.routerHandler = function(req, res) {
+  this.postHandler = function(req, res) {
     bill = _.pick(req.body, [
       'merchantBillId',
       'currency',
@@ -30,15 +30,23 @@ var controller = function() {
       'items'
     ]);
 
-    // the creator of the bill
-    bill.owner = req.user.id;
+    bill.owner = req.user.id; // the creator of the bill
 
+    // create the invoice
     self.createBill(bill, function(err, savedBill) {
       res.json({
         'success': true,
         'bill': savedBill
       });
     });
+
+  // payBill
+  this.paymentHandler = function (req, res) {
+    // Check if the bill is due, and has not expired yet
+    // #TODO:0 check if the bill has an existing unexpired invoice
+    // #TODO:10 if not, generate a new invoice
+    // #TODO:20 redirect to invoice page
+  };
 
   };
 };

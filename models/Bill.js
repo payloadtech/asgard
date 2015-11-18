@@ -1,4 +1,18 @@
 module.exports = function(sequelize, DataTypes) {
+  var Item = sequelize.define('Item', {
+    description: {
+      type: DataTypes.STRING
+    },
+
+    price: {
+      type: DataTypes.FLOAT
+    },
+
+    quantity: {
+      type: DataTypes.INTEGER
+    }
+  });
+
   var Bill = sequelize.define('Bill', {
 
     owner: { // creator of the bill
@@ -76,5 +90,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE
     }
   });
+
+  Bill.hasMany(Item, {as: 'items'});
+
   return Bill;
 };
